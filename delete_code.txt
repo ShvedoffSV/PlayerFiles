@@ -1,0 +1,184 @@
+ # global playlist
+    # playlist = filedialog.askopenfilenames()
+    # # Відтворення плейлисту, якщо вибрані файли
+    # if playlist:
+    #     play_playlist()
+
+# def play_playlist():
+#     for filename in playlist:
+#         pygame.mixer.init(buffer=512)
+#         pygame.mixer.music.load(filename)
+#         pygame.mixer.music.set_volume(initial_volume)  # Задати початкову гучність
+#         pygame.mixer.music.play()
+#         pygame.mixer.music.set_endevent(pygame.USEREVENT)
+#         pygame.event.wait()
+#         update_track_info()
+
+
+# def change_volume(delta):
+#   volume = pygame.mixer.music.get_volume() + delta
+#  volume = max(0, min(1, volume))  # Перевірка, щоб зберегти значення в межах [0, 1]
+# pygame.mixer.music.set_volume(volume)
+
+# def rewind_music(delta):
+#     if pygame.mixer.music.get_busy():  # Перевірка, чи відтворюється музика
+#         current_pos = pygame.mixer.music.get_pos() / 1000  # Поточна позиція в секундах
+#         new_pos = max(0, min(track_length, current_pos + delta))  # Нова позиція в межах треку
+#         pygame.mixer.music.set_pos(new_pos)  # Перемотування на delta секунд
+#         root.after(rewind_interval, lambda: rewind_music(delta))  # Повторення функції через інтервал
+#     else:
+#         print("Музика не відтворюється")
+
+
+# def backward_music(delta=-10):
+#     if pygame.mixer.music.get_busy():  # Перевірка, чи відтворюється музика
+#         current_pos = pygame.mixer.music.get_pos() / 1000  # Поточна позиція в секундах
+#         new_pos = max(0, min(track_length, current_pos + delta))  # Нова позиція в межах треку
+#         rewind_music(delta)  # Виклик функції перемотки
+#         root.after(rewind_interval, lambda: rewind_music(delta))  # Повторення функції через інтервал
+#     else:
+#         print("Музика не відтворюється")
+#
+#
+# def forward_music(delta=10):
+#     if pygame.mixer.music.get_busy():  # Перевірка, чи відтворюється музика
+#         current_pos = pygame.mixer.music.get_pos() / 1000  # Поточна позиція в секундах
+#         new_pos = max(0, min(track_length, current_pos + delta))  # Нова позиція в межах треку
+#         rewind_music(delta)  # Виклик функції перемотки
+#         root.after(rewind_interval, lambda: rewind_music(delta))  # Повторення функції через інтервал
+#     else:
+#         print("Музика не відтворюється")
+
+
+
+# Прив'язка подій клавіш до функцій
+def key(event):
+    # elif event.keysym == 'Right':
+    #     forward_music()
+    # elif event.keysym == 'Left':
+    #     backward_music()
+
+
+# def update_track_info():
+#     global track_length
+#     # Перевірка, чи вибрано файл
+#     if not filename:
+#         return
+#
+#     # Отримання інформації про трек
+#     is_playing = pygame.mixer.music.get_busy()
+#     # Якщо музика відтворюється або зупинена, оновлюємо інформацію про трек
+#     if is_playing or not is_playing:
+#         # Отримання інформації про трек
+#         track_info = pygame.mixer.Sound(filename)
+#         track_length = MP3(filename).info.length
+#         track_length_str = str(timedelta(seconds=round(track_length)))
+#
+#         # Отримання назви треку
+#         track_name = os.path.splitext(os.path.basename(filename))[0]  # Витягуємо лише ім'я файлу без шляху і без розширення
+#         # Оновлення мітки з інформацією про трек
+#         track_info_label.config(text=f"Довжина треку: {track_length_str}")
+#         track_name_label.config(text=f"Назва треку: {track_name}")
+# def update_track_info():
+#     global track_length
+#     # Перевірка, чи вибрано файл
+#     if not filename:
+#         return
+#
+#     # Отримання інформації про трек
+#     is_playing = pygame.mixer.music.get_busy()
+#     # Якщо музика відтворюється або зупинена, оновлюємо інформацію про трек
+#     if is_playing or not is_playing:
+#         # Отримання інформації про трек
+#         track_info = pygame.mixer.Sound(filename)
+#         track_length = MP3(filename).info.length
+#
+#         # Отримання назви треку
+#         track_name = os.path.splitext(os.path.basename(filename))[0]  # Витягуємо лише ім'я файлу без шляху і без розширення
+#
+#         # Оновлення мітки з інформацією про трек
+#         if is_playing:
+#             current_pos = pygame.mixer.music.get_pos() / 1000  # Поточна позиція в секундах
+#             remaining_time = track_length - current_pos
+#             remaining_time_str = str(timedelta(seconds=round(remaining_time)))
+#             track_info_label.config(text=f"Довжина треку: {remaining_time_str}")
+#         else:
+#             track_length_str = str(timedelta(seconds=round(track_length)))
+#             track_info_label.config(text=f"Довжина треку: {track_length_str}")
+#
+#         track_name_label.config(text=f"Назва треку: {track_name}")
+
+
+# hotkeys_window = None
+
+# def toggle_hotkeys_info():
+#     global hotkeys_window
+#     if hotkeys_window and hotkeys_window.winfo_exists():
+#         hotkeys_window.destroy()  # Закрити вікно, якщо воно відкрите
+#         hotkeys_window = None  # Скинути змінну на None, оскільки вікно більше не існує
+#     else:
+#         show_hotkeys_info()
+#
+# def show_hotkeys_info():
+#     global hotkeys_window
+#     if not (hotkeys_window and hotkeys_window.winfo_exists()):
+#         hotkeys_info = """
+#     Гарячі клавіші:
+#     o - Вибрати файли
+#     Пробіл - Відтворити/Призупинити відтворення
+#     Escape - Зупинити відтворення
+#     Up Arrow - Збільшити гучність
+#     Down Arrow - Зменшити гучність
+#     Right Arrow - Перемотати вперед
+#     Left Arrow - Перемотати назад
+#     p - Пауза/Старт
+#     i - Інформація...
+#
+#     ***
+#     Вітання Алусику, Олежику та Андрійчику! ))
+#     ***
+#     """
+#     info_window = tk.Toplevel(root)
+#     info_window.title("Інформація HotKeys")
+#
+#     # Отримання рекомендованого розміру віджета Label
+#     label_width = 300
+#     label_height = 250
+#
+#     # Отримання розміру головного вікна
+#     root_width = root.winfo_width()
+#     root_height = root.winfo_height()
+#
+#     # Обчислення позиції для відображення вікна інформації про гарячі клавіші
+#     info_x = root.winfo_rootx() + root_width + 10
+#     info_y = root.winfo_rooty()
+#
+#     # Задання розміру та позиції вікна
+#     info_window.geometry(f"{label_width}x{label_height}+{info_x}+{info_y}")
+#     info_window.resizable(False, False)
+#
+#     # Додавання елементу Label з описом гарячих клавіш
+#     info_label = tk.Label(info_window, text=hotkeys_info)
+#     info_label.pack()
+
+
+
+# Фіксація розміру вікна
+#root.geometry("550x650")  # Задайте потрібні розміри
+
+
+# Встановлення білого кольору тексту для всіх елементів з використанням циклу
+#for widget in root.winfo_children():
+    #widget.configure(fg="white")
+
+#rewind_forward_button = ttk.Button(root, text=">>", command=lambda: rewind_music(rewind_increment), style='Custom.TButton', takefocus=0)
+#rewind_backward_button = ttk.Button(root, text="<<", command=lambda: rewind_music(-rewind_increment), style='Custom.TButton', takefocus=0)
+
+#rewind_forward_button.grid(row=5, column=1, pady=2)
+#rewind_backward_button.grid(row=5, column=0, pady=2)
+
+#set_background_from_active_window(root)
+# root.bind('<sp', lambda event: pause_music())  # Призупинити музику на натискання пробілу
+# root.bind('<Escape>', lambda event: resume_music())  # Продовжити музику на натискання Esc
+# root.bind("<Left>", lambda event: backward_music())
+# root.bind("<Right>", lambda event: forward_music())
